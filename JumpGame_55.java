@@ -3,10 +3,10 @@ class Solution {
         int step = nums[0];
         int n = nums.length;
         for(int i = 1; i < n; i++){
-            if(--step < nums[i]) {
+            if(--step < nums[i] && step > 0) {
                 step = nums[i];
             }
-            if(step <= 0 && i != nums[n - 1]) return false;
+            if(step < 0) return false;
         }
         return true;
     }
