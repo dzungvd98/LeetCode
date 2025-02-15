@@ -1,18 +1,19 @@
 class Solution {
     public static String reverseWords(String s) {
         StringBuilder res = new StringBuilder();
-        for(int i = 0; i < s.length(); i++) {
-            while(s.charAt(i) == ' ') {
-                i++;
-                if(i >= s.length()) return res.toString().trim();
-            }
-            StringBuilder word = new StringBuilder();
-            while(s.charAt(i) != ' ') {
-                word.append(s.charAt(i));
-                i++;
-                if(i >= s.length()) break;
-            }
-            res.insert(0, " ").insert(0, word);
+        int i = s.length() - 1;
+
+        while (i >= 0) {
+            while (i >= 0 && s.charAt(i) == ' ') i--;
+            if (i < 0) break; // Thoát nếu hết chuỗi
+
+            int end = i; // Đánh dấu vị trí cuối từ
+
+            // Tìm đầu từ
+            while (i >= 0 && s.charAt(i) != ' ') i--;
+
+            // Lấy từ từ s (i+1 đến end) và thêm vào res
+            res.append(s, i + 1, end + 1).append(" ");
         }
         return res.toString().trim();
     }
