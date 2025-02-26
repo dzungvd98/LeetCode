@@ -21,6 +21,19 @@ class Solution {
             }
         }
         return dienTichMax;
+        
+//        int left = 0;
+//        int right = height.length-1;
+//        int maxVal = 0;
+//        while(left < right)
+//        {
+//            int minHeight = Math.min(height[left], height[right]);
+//            int area = minHeight * (right - left);
+//            maxVal = Math.max(maxVal, area);
+//            while(left < right && height[left] <= minHeight) left++;
+//            while(left < right && height[right] <= minHeight) right--;
+//        }
+//        return maxVal;
     }
     
     public static void main(String[] args) {
