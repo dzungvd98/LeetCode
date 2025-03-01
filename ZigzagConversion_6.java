@@ -36,4 +36,28 @@ class Solution {
 
         return new String(result);
     }
+    
+    public String convert2(String s, int numRows) {
+        StringBuilder rs = new StringBuilder();
+        int space = (numRows - 1) * 2;
+        for(int i = 0; i < numRows; i++) {
+            int j = i;
+            int x = space - i*2;
+            while(j < s.length()) {
+                if(x == space || x == 0) {
+                    rs.append(s.charAt(j));
+                    j = j + space;
+                } else {
+                    rs.append(s.charAt(j));
+                    j = j + space;
+                    if(j >= s.length()) {
+                        break;
+                    }
+                    rs.append(s.charAt(j));
+                    j += i*2;
+                }
+            }
+        }
+        return rs.toString();
+    }
 }
