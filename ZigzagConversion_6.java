@@ -37,27 +37,36 @@ class Solution {
         return new String(result);
     }
     
-    public String convert2(String s, int numRows) {
+    public static String convert2(String s, int numRows) {
         StringBuilder rs = new StringBuilder();
+        if(numRows == 1) return s;
         int space = (numRows - 1) * 2;
         for(int i = 0; i < numRows; i++) {
             int j = i;
-            int x = space - i*2;
+            int x = space - i*2; 
             while(j < s.length()) {
-                if(x == space || x == 0) {
+                if(i == numRows - 1 || i == 0) {
                     rs.append(s.charAt(j));
                     j = j + space;
                 } else {
                     rs.append(s.charAt(j));
-                    j = j + space;
+                    j += x;
+                    System.out.println(j);
                     if(j >= s.length()) {
                         break;
                     }
                     rs.append(s.charAt(j));
                     j += i*2;
+                    System.out.println(j);
+
                 }
             }
         }
         return rs.toString();
+    }
+    
+    public static void main(String[] args) {
+        String s = "PAYPALISHIRING";
+        System.out.println(convert2(s, 3));
     }
 }
