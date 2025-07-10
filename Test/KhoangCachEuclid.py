@@ -12,7 +12,7 @@ def euclid_space(X, Y) :
 
 if __name__ == '__main__':
     n = int(input())
-    while(n > 0):
+    while n > 0:
         X = list(map(int, input().split()))
         Y = list(map(int, input().split()))
 
