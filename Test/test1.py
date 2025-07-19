@@ -63,6 +63,15 @@ def count_unique_palindromes(str_input):
 
     return result
 
+class NhanVien:
+    def __init__(self, ma, ten, vao, ra):
+        self.ma = ma
+        self.ten = ten
+        self.vao = vao
+        self.ra = ra
+
+
+
 if __name__ == '__main__':
     print(atbash("Sinh vien PTIT D21"))
     print(tinhTienDien_1(70))
