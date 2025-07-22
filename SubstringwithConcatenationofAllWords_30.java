@@ -15,14 +15,22 @@ public class SubstringwithConcatenationofAllWords_30 {
 
     public static List<Integer> findSubstring(String s, String[] words) {
         System.out.println(findLengthOfSubstring(words));
-        return new ArrayList<Integer>();
+        int  i = 0;
+        while( i  < s.length()) {
+            for(String word: words) {
+                System.out.println(s.indexOf(word, 0));
+            }
+            i++;
+        }
+        return new ArrayList<>();
     }
     
     
     public static void main(String args[]) {
-        String words[] = {"word","good","best","words"};
+        String words[] = {"bar","foo","the"};
+        String s = "barfoofoobarthefoobarman";
         
-        findSubstring("aaaa", words);
+        findSubstring(s, words);
         
     }
 }
