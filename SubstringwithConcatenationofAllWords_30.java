@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SubstringwithConcatenationofAllWords_30 {
     
@@ -14,15 +15,52 @@ public class SubstringwithConcatenationofAllWords_30 {
     
 
     public static List<Integer> findSubstring(String s, String[] words) {
-        System.out.println(findLengthOfSubstring(words));
-        int  i = 0;
-        while( i  < s.length()) {
-            for(String word: words) {
-                System.out.println(s.indexOf(word, 0));
-            }
-            i++;
+         List<Integer> ans = new ArrayList<>();
+
+        if (words.length == 0 || s.length() == 0) {
+            return ans;
         }
-        return new ArrayList<>();
+
+        int wordSize = words[0].length();
+        int wordCount = words.length;
+        int N = s.length();
+
+        HashMap<String,Integer> originalCount = new HashMap<>();
+        for(int i = 0; i<words.length; i++){
+            originalCount.put(words[i], originalCount.getOrDefault(words[i],0)+1);
+        }
+
+        for(int offset = 0; offset<wordSize; offset++){
+            HashMap<String,Integer> currentCount = new HashMap<>();
+            int start = offset;
+            int count = 0;
+            for(int end = offset; end + wordSize <= N; end += wordSize){
+                String currWord = s.substring(end, end + wordSize);
+                if(originalCount.containsKey(currWord)){
+                    currentCount.put(currWord, currentCount.getOrDefault(currWord,0)+1);
+                    count++;
+
+                    while(currentCount.get(currWord)>originalCount.get(currWord)){
+                        String startWord = s.substring(start,start+wordSize);
+                        currentCount.put(startWord, currentCount.get(startWord)-1);
+                        start+=wordSize;
+                        count--;                        
+                    }
+
+                    if(count == wordCount){
+                        ans.add(start);
+                    }
+                    
+                }
+                else{
+                    count = 0;
+                    start = end + wordSize;
+                    currentCount.clear();
+                }
+            }
+
+        }
+        return ans;
     }
     
     
@@ -30,7 +68,7 @@ public class SubstringwithConcatenationofAllWords_30 {
         String words[] = {"bar","foo","the"};
         String s = "barfoofoobarthefoobarman";
         
-        findSubstring(s, words);
+        System.out.println(findSubstring(s, words));
         
     }
 }
