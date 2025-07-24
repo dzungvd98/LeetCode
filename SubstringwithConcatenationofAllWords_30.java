@@ -4,16 +4,6 @@ import java.util.HashMap;
 
 public class SubstringwithConcatenationofAllWords_30 {
     
-    public static int findLengthOfSubstring(String[] words){
-        int result = 0;
-        for(String word : words) {
-            result += word.length();
-        }
-        
-        return result;
-    }
-    
-
     public static List<Integer> findSubstring(String s, String[] words) {
          List<Integer> ans = new ArrayList<>();
 
